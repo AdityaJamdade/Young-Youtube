@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, LinearProgress } from '@mui/material'
 import { Videos } from './'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
@@ -14,6 +14,8 @@ const SearchFeed = () => {
       .then(data => setVideos(data.items))
   }, [searchTerm]);
 
+  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black"}}>Loading..</div></>)
+  
   return (
     <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>
       <Typography variant='h4' fontWeight="bold" mb={2} sx={{ color: 'white' }}>
