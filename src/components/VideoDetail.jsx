@@ -21,10 +21,10 @@ const VideoDetail = () => {
 
   console.log(videoDetail);
   console.log(videos);
-
-  const { snippet: { title, description, channelTitle, channelId }, statistics: { viewCount, likeCount } } = videoDetail;
   
   if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black"}}>Loading..</div></>)
+
+  const { snippet: { title, description, channelTitle, channelId }, statistics: { viewCount, likeCount } } = videoDetail;
   
   return (
     <Box minHeight="95vh">
