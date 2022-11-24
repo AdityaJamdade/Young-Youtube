@@ -12,23 +12,27 @@ const VideoDetail = () => {
   const [videos, setVideos] = useState(null);
 
   useEffect(() => {
-    document.body.title = 'Loading...';
 
     fetchFromAPI(`videos?part=snippet,statistics&id=${id}`)
     .then((data) => setVideoDetail(data.items[0]));
     
     fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`)
     .then((data) => setVideos(data.items));
-    
-    // document.body.title = `${channelTitle}`;
-  }, [id])
 
-  console.log(videoDetail);
-  // console.log(videos);
+  }, [id])
   
   if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}></div></>)
 
   const { snippet: { title, description, channelTitle, channelId }, statistics: { viewCount, likeCount } } = videoDetail;
+  if(!videoDetail){
+    document.title = `Loading...`;
+  }else{
+    document.title = `${title}`;
+  }
+
+  // console.log(videoDetail);
+  // console.log(videos);
+  
   
   return (
     <Box minHeight="95vh" sx={{px: {xs:'10px', md:'45px'} }}>
