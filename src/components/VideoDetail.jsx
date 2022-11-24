@@ -12,25 +12,29 @@ const VideoDetail = () => {
   const [videos, setVideos] = useState(null);
 
   useEffect(() => {
-    fetchFromAPI(`videos?part=snippet,statistics&id=${id}`)
-      .then((data) => setVideoDetail(data.items[0]));
+    document.body.title = 'Loading...';
 
+    fetchFromAPI(`videos?part=snippet,statistics&id=${id}`)
+    .then((data) => setVideoDetail(data.items[0]));
+    
     fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`)
-      .then((data) => setVideos(data.items));
+    .then((data) => setVideos(data.items));
+    
+    // document.body.title = `${channelTitle}`;
   }, [id])
 
   console.log(videoDetail);
-  console.log(videos);
+  // console.log(videos);
   
-  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black"}}>Loading..</div></>)
+  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}></div></>)
 
   const { snippet: { title, description, channelTitle, channelId }, statistics: { viewCount, likeCount } } = videoDetail;
   
   return (
-    <Box minHeight="95vh">
-      <Stack direction={{ xs: 'column', md: 'row' }}>
+    <Box minHeight="95vh" sx={{px: {xs:'10px', md:'45px'} }}>
+      <Stack direction={{ xs: 'column', md:'row'}}>
         <Box flex={1} >
-          <Box sx={{ width: {sm:'100%', md:'850px'}, position: 'static', top: '86px', ml:'50px' }} >
+          <Box sx={{ width: {xs: '100%'}, position: 'static', top: '86px' }} >
             <ReactPlayer origin={`http://localhost:3000`} url={`https://www.youtube.com/watch?v=${id}`} className="react-player" controls />
             <Typography color="#fff" variant="h5" fontWeight="bold" p={2} >
               {title}

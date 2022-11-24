@@ -14,7 +14,7 @@ const SearchFeed = () => {
       .then(data => setVideos(data.items))
   }, [searchTerm]);
 
-  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black"}}>Loading..</div></>)
+  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}></div></>)
   
   return (
     <Box p={2} sx={{ overflowY: 'auto', height: '90vh', flex: 2 }}>

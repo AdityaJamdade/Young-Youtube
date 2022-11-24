@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, LinearProgress } from "@mui/material";
 
 import { Videos, ChannelCard } from './';
 import { fetchFromAPI } from '../utils/fetchFromAPI';
@@ -11,17 +11,19 @@ const ChannelDetail = () => {
 
   const { id } = useParams();
 
+  
   console.log(channelDetail, videos);
 
   useEffect(() => {
     fetchFromAPI(`channels?part=snippet&id=${id}`)
-      .then((data) => setChannelDetail(data?.items[0]));
-
+    .then((data) => setChannelDetail(data?.items[0]));
+    
     fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`)
-      .then((data) => setVideos(data?.items));
-
+    .then((data) => setVideos(data?.items));
+    
   }, [id])
-
+  
+  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}></div></>)
   return (
     <Box minHeight="95vh">
       <Box >

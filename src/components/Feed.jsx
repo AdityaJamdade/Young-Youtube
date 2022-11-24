@@ -13,7 +13,7 @@ const Feed = () => {
       .then(data => setVideos(data.items))
   }, [selectedCategory]);
 
-  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black"}}>Loading..</div></>)
+  if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}>Loading..</div></>)
 
   return (
     <Stack sx={{ flexDirection : { sx:"column", md:"row" } }}>
