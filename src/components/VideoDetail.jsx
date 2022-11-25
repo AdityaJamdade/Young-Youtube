@@ -60,7 +60,8 @@ const VideoDetail = () => {
                   </Typography>
                 </Stack>
               </Stack>
-              <Typography variant="subtitle1" color="#fff" style={{"margin-top":"-60px", "margin-left":"20px"}}>
+              <hr  />
+              <Typography variant="subtitle1" color="#fff" style={{ "margin": "20px" ,"marginTop":"-80px"}}>
                 <b>Description :- </b><br />
                 {description}
               </Typography>

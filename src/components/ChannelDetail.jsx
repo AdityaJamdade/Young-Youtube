@@ -10,10 +10,8 @@ const ChannelDetail = () => {
   const [videos, setVideos] = useState([])
 
   const { id } = useParams();
-
   
   console.log(channelDetail, videos);
-
   useEffect(() => {
     fetchFromAPI(`channels?part=snippet&id=${id}`)
     .then((data) => setChannelDetail(data?.items[0]));
@@ -24,6 +22,13 @@ const ChannelDetail = () => {
   }, [id])
   
   if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}></div></>)
+
+  if (!channelDetail) {
+    document.title = `Loading...`;
+  } else {
+    document.title = `${channelDetail.snippet.title} - Channel`;
+  }
+
   return (
     <Box minHeight="95vh">
       <Box >
