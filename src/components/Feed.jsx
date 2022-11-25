@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Box, Stack, Paper, Typography, LinearProgress } from '@mui/material'
+import { Box, Stack, Typography, LinearProgress } from '@mui/material'
 import { Sidebar, Videos } from './'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
@@ -13,8 +13,8 @@ const Feed = () => {
       .then(data => setVideos(data.items))
   }, [selectedCategory]);
 
+  document.title = "Young YouTube"
   if(!videos?.length) return (<><LinearProgress /><div style={{width:"100vw", height: "100vh", backgroundColor: "black", position:'sticky'}}>Loading..</div></>)
-
   return (
     <Stack sx={{ flexDirection : { sx:"column", md:"row" } }}>
       <Box sx={{height:{sx:'auto', md:'92vh'}, borderRight:'1px solid #3d3d3d', px:{sx:0, md:2}}}>
